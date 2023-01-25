@@ -49,6 +49,8 @@ func (s *Store) StartExpirationWorker(ctx context.Context, checkInterval time.Du
 	ticker := time.NewTicker(checkInterval)
 	defer ticker.Stop()
 
+	s.cache.DeleteExpired()
+
 	for {
 		select {
 		case <-ctx.Done():
