@@ -54,5 +54,5 @@ func (s *Server) Delete(_ context.Context, req *pb.DeleteRequest) (*pb.DeleteRes
 }
 
 func (s *Server) Keys(_ context.Context, req *pb.KeysRequest) (*pb.KeysResponse, error) {
-	return &pb.KeysResponse{Keys :s.store.Keys()}, nil
+	return &pb.KeysResponse{Keys: s.store.Keys()}, nil
 }

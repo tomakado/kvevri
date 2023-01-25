@@ -26,8 +26,8 @@ func TestStore_Set(t *testing.T) {
 
 	t.Run("existing key", func(t *testing.T) {
 		var (
-			store = store.New(1 * time.Second)
-			key   = []byte("key")
+			store  = store.New(1 * time.Second)
+			key    = []byte("key")
 			value1 = []byte("value")
 			value2 = []byte("new value")
 		)
@@ -70,15 +70,15 @@ func TestStore_Get(t *testing.T) {
 		const ttl = 500 * time.Millisecond
 
 		var (
-			store = store.New(ttl)
-			key   = []byte("key")
-			value = []byte("value")
+			store       = store.New(ttl)
+			key         = []byte("key")
+			value       = []byte("value")
 			ctx, cancel = context.WithCancel(context.Background())
 		)
 
 		defer cancel()
 
-		go store.StartExpirationWorker(ctx, ttl / 2)
+		go store.StartExpirationWorker(ctx, ttl/2)
 
 		store.Set(key, value)
 
@@ -133,7 +133,7 @@ func TestStore_Keys(t *testing.T) {
 
 	t.Run("non-empty store", func(t *testing.T) {
 		var (
-			store = store.New(1 * time.Second)
+			store  = store.New(1 * time.Second)
 			key1   = []byte("key1")
 			value1 = []byte("value1")
 			key2   = []byte("key2")

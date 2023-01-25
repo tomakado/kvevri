@@ -56,8 +56,13 @@ func (s *Store) StartExpirationWorker(ctx context.Context, checkInterval time.Du
 		case <-ctx.Done():
 			return
 		case <-ticker.C:
-			log.Println("deleting expired keys")
+			before := s.cache.Len()
 			s.cache.DeleteExpired()
+			after := s.cache.Len()
+
+			if before != after {
+				log.Printf("deleted %d expired key(s)", before-after)
+			}
 		}
 	}
 }
