@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option go_package = "github.com/tomakado/kvevri/internal/pb";
+
+package kvevri;
+
+service Store {
+	rpc Get(GetRequest) returns (GetResponse);
+	rpc Set(SetRequest) returns (SetResponse);
+	rpc Delete(DeleteRequest) returns (DeleteResponse);
+	rpc Keys(KeysRequest) returns (KeysResponse);
+}
+
+message ValuePair {
+	bytes key = 1;
+	bytes value = 2;
+}
+
+message GetRequest {
+	repeated bytes keys = 1;
+}
+
+message GetResponse {
+	repeated ValuePair values = 1;
+}
+
+message SetRequest {
+	repeated ValuePair values = 1;
+}
+
+message SetResponse {}
+
+message DeleteRequest {
+	repeated bytes keys = 1;
+}
+
+message DeleteResponse {}
+
+message KeysRequest {}
+
+message KeysResponse {
+	repeated bytes keys = 1;
+}
