@@ -13,7 +13,7 @@ make run
 or
 
 ```
-make build && bin/kvevri
+make build && ./bin/kvevri
 ```
 
 ## With Docker
